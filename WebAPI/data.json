@@ -1,0 +1,85 @@
+{
+  "Users": [
+    {
+      "Username": "devid83",
+      "Password": "12345678",
+      "Email": "koljnrekajdavid@gmail.com",
+      "Role": "RegisteredUser"
+    },
+    {
+      "Username": "lovrento",
+      "Password": "12345678",
+      "Email": "lovrento@gmail.com",
+      "Role": "RegisteredUser"
+    },
+    {
+      "Username": "Gogix69",
+      "Password": "12345678",
+      "Email": "jebix@hotmail.com",
+      "Role": "RegisteredUser"
+    },
+    {
+      "Username": "user123",
+      "Password": "12345678",
+      "Email": "example@gmail.com",
+      "Role": "RegisteredUser"
+    }
+  ],
+  "Posts": [
+    {
+      "title": "Global warming",
+      "postId": 1,
+      "content": "asidaspdj",
+      "user": {
+        "Username": "lovrento",
+        "Password": "12345678",
+        "Email": "lovrento@gmail.com",
+        "Role": "RegisteredUser"
+      }
+    },
+    {
+      "title": "Football",
+      "postId": 3,
+      "content": "asdsadsadasd",
+      "user": {
+        "Username": "devid83",
+        "Password": "12345678",
+        "Email": "koljnrekajdavid@gmail.com",
+        "Role": "RegisteredUser"
+      }
+    },
+    {
+      "title": "B)",
+      "postId": 4,
+      "content": "asdsadsadasd",
+      "user": {
+        "Username": "lovrento",
+        "Password": "12345678",
+        "Email": "lovrento@gmail.com",
+        "Role": "RegisteredUser"
+      }
+    },
+    {
+      "title": "BlazorWasm",
+      "postId": 5,
+      "content": " asdgfdasfgdsag",
+      "user": {
+        "Username": "devid83",
+        "Password": "12345678",
+        "Email": "koljnrekajdavid@gmail.com",
+        "Role": "RegisteredUser"
+      }
+    },
+    {
+      "title": "example",
+      "postId": 6,
+      "content": "safddfasdfasbgafdg",
+      "user": {
+        "Username": "user123",
+        "Password": "12345678",
+        "Email": "example@gmail.com",
+        "Role": "RegisteredUser"
+      }
+    }
+  ]
+}

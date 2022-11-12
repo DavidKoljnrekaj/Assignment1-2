@@ -1,0 +1,70 @@
+﻿@page "/UserFeed/{user}"
+@using global::Shared.Model
+@using BlazorWasm.Services
+@inject NavigationManager navMgr
+@inject IAuthService authService
+@inject IPostService postService
+
+<AuthorizeView>
+    <Authorized>
+        <h3>@user</h3>
+       
+        @if (posts == null)
+        {
+        }
+        else if (!posts.Any())
+        {
+            <p>No Posts to display</p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Title</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in posts)
+                {
+                    <tr>
+                        <td>@item.user.Username</td>
+                        <td>@item.title</td>
+                        <td>
+                            <button @onclick="@(() => navMgr.NavigateTo($"/ViewPost/{item.postId}"))">View</button>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+    </Authorized>
+    <NotAuthorized>
+        <h3>PostFeed</h3>
+        <p1>Please log in to view this users posts</p1>
+    </NotAuthorized>
+</AuthorizeView>
+@code {
+    [Parameter] 
+    public string user { get; set; }
+    
+    public IEnumerable<Post>? posts;
+    
+    private string msg = "";
+    
+    protected override async Task OnInitializedAsync()
+    {
+        msg = "";
+        try
+        {
+            posts = await postService.getAsync(null,user);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+}

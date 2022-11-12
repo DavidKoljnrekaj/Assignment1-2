@@ -1,0 +1,56 @@
+﻿@page "/PostAdd"
+@using BlazorWasm.Services
+@using global::Shared.Dtos
+@using global::Shared.Model
+@inject IAuthService authService
+@inject IPostService postService
+@inject NavigationManager navMgr
+
+<AuthorizeView>
+<NotAuthorized>
+</NotAuthorized>
+    <Authorized>
+    <div class="card">
+        <h3>Add post</h3>
+        <div class="field">
+            <label>Title:</label>
+            <input type="text" @bind="title"/>
+        </div>
+        <div class="field">
+            <label style="text-align: center">Content:</label>
+            <textarea @bind="content"/>
+        </div>
+        @if (!string.IsNullOrEmpty(errorLabel))
+        {
+            <div class="field">
+                <label style="color: red">
+                    @errorLabel
+                </label>
+            </div>
+        }
+        <div class="field">
+            <button class="loginbtn" @onclick="AddPostAsync">Post</button>
+        </div>
+    </div>
+    </Authorized>
+    </AuthorizeView>
+@code {
+    private string title;
+    private string content;
+    private string errorLabel;
+
+    public async void AddPostAsync()
+    {
+        errorLabel = "";
+        try
+        {
+            Post post = await postService.postAsync(new PostCreationDTO(authService.GetAuthAsync().Result.Identity.Name,title,content));
+            navMgr.NavigateTo("/ViewPost/"+post.postId);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            errorLabel = $"Error: {e.Message}";
+        }
+    }
+}

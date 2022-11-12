@@ -1,0 +1,11 @@
+.filter {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+}
+.icon {
+    width: 30px;
+    cursor: pointer;
+}

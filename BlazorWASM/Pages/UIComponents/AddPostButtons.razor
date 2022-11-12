@@ -1,0 +1,18 @@
+﻿@using BlazorWasm.Services
+@namespace addPost
+@inject NavigationManager navMgr
+@inject IAuthService authService
+<AuthorizeView>
+    <Authorized>
+        <img class="icon" src="img/plus.png" @onclick="AddPost"/>
+    </Authorized>
+    <NotAuthorized>
+    </NotAuthorized>
+</AuthorizeView>
+@code {
+
+    private void AddPost()
+    {
+        navMgr.NavigateTo("/PostAdd");
+    }
+}

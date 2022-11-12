@@ -1,0 +1,44 @@
+﻿@page "/ViewPost/{id:int}"
+@using global::Shared.Model
+@using BlazorWasm.Services
+@inject IPostService postService
+@inject NavigationManager navMgr
+<h3>Title: @title</h3>
+<div></div>
+<div>@content</div>
+<div></div>
+<div >User: @user</div>
+<div>
+    <button @onclick="@(() => navMgr.NavigateTo($"/UserFeed/{@user}"))">View profile</button>
+    <button @onclick="@(() => navMgr.NavigateTo($"/PostFeed"))">Back</button>
+</div>
+@if (!string.IsNullOrEmpty(msg))
+    {
+        <label style="color: red">@msg</label>
+    }
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    
+    private string msg = "";
+    public string title;
+    public string content;
+    public string user;
+    protected override async Task OnInitializedAsync()
+    {
+        msg = "";
+        try
+        {
+            Post post = await postService.getById(Id);
+            title = post.title;
+            content = post.content;
+            user = post.user.Username;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+
+}

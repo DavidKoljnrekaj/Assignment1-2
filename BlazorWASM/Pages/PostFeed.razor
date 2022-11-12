@@ -1,0 +1,85 @@
+﻿@page "/PostFeed"
+@using BlazorWasm.Services
+@using global::Shared.Model
+@inject NavigationManager navMgr
+@inject IAuthService authService
+@inject IPostService postService
+
+<AuthorizeView>
+    <Authorized>
+        <h3>Hello @context.User.Identity.Name</h3>
+        <div>
+        <label>Search:</label>
+            <input type="text" @bind="titleFilter"/>
+        
+            <img class="icon" src="img/preuzmi.png" @onclick="() => SearchPosts()"/> 
+        </div>
+        @if (posts == null)
+        {
+        }
+        else if (!posts.Any())
+        {
+            <p>No Posts to display</p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Title</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in posts)
+                {
+                    <tr>
+                        <td>@item.user.Username</td>
+                        <td >@item.title</td>
+                        <td>
+                            <button @onclick="@(() => navMgr.NavigateTo($"/ViewPost/{item.postId}"))">View</button>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+    </Authorized>
+    <NotAuthorized>
+        <h3>PostFeed</h3>
+        <p1>Please log in to view latest posts</p1>
+    </NotAuthorized>
+    </AuthorizeView>
+@code {
+    private IEnumerable<Post>? posts;
+    private string msg = "";
+    private string? titleFilter;
+    
+    private async Task SearchPosts()
+    {
+        try
+        {
+            posts = await postService.getAsync(titleFilter,null);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        msg = "";
+        try
+        {
+            posts = await postService.getAsync(titleFilter,null);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+
+}
