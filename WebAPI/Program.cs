@@ -2,6 +2,8 @@ using System.Text;
 using Application;
 using Application.DaoInterfaces;
 using Application.Logic;
+using EfcDataAccess;
+using EfcDataAccess.DAOs;
 using FileData;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -30,10 +32,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 builder.Services.AddScoped<FileContext>();
-builder.Services.AddScoped<IUserDao, UserFileDao>();
+builder.Services.AddScoped<IUserDao, UserEfcDAO>();
 builder.Services.AddScoped<IUserLogic, UserLogic>();
-builder.Services.AddScoped<IPostDao, PostFileDAO>();
+builder.Services.AddScoped<IPostDao, PostEfcDAO>();
 builder.Services.AddScoped<IPostLogic, PostLogic>();
+builder.Services.AddDbContext<PostContext>();
 AuthorizationPolicies.AddPolicies(builder.Services);
 var app = builder.Build();
 

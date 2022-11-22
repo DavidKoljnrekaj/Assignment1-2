@@ -17,11 +17,17 @@
       "Password": "12345678",
       "Email": "jebix@hotmail.com",
       "Role": "RegisteredUser"
+    },
+    {
+      "Username": "user123",
+      "Password": "12345678",
+      "Email": "example@gmail.com",
+      "Role": "RegisteredUser"
     }
   ],
   "Posts": [
     {
-      "title": "asdasdasdijsjad",
+      "title": "Global warming",
       "postId": 1,
       "content": "asidaspdj",
       "user": {
@@ -32,7 +38,7 @@
       }
     },
     {
-      "title": "stdasdasfasring",
+      "title": "Football",
       "postId": 3,
       "content": "asdsadsadasd",
       "user": {
@@ -43,7 +49,7 @@
       }
     },
     {
-      "title": "stdasdasfasring",
+      "title": "B)",
       "postId": 4,
       "content": "asdsadsadasd",
       "user": {
@@ -54,13 +60,24 @@
       }
     },
     {
-      "title": "asdasdasdfpgdfogdf",
+      "title": "BlazorWasm",
       "postId": 5,
-      "content": "Global warming",
+      "content": " asdgfdasfgdsag",
       "user": {
         "Username": "devid83",
         "Password": "12345678",
         "Email": "koljnrekajdavid@gmail.com",
+        "Role": "RegisteredUser"
+      }
+    },
+    {
+      "title": "example",
+      "postId": 6,
+      "content": "safddfasdfasbgafdg",
+      "user": {
+        "Username": "user123",
+        "Password": "12345678",
+        "Email": "example@gmail.com",
         "Role": "RegisteredUser"
       }
     }
